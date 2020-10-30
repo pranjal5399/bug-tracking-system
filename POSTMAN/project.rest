@@ -1,0 +1,12 @@
+#GET ALL PROJECTS
+GET http://localhost:8080/api/projects
+
+###
+#ADD ONE PROJECT
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+
+{
+    "title":"Project2",
+    "description":"description2"
+}
