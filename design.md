@@ -3,6 +3,7 @@
 1. Admin
 2. Project Manager
 3. Developer
+4. Client
 
 # **Tickets**
 

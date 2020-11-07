@@ -1,6 +1,6 @@
 #GET ALL PROJECTS
 GET http://localhost:8080/api/projects
-
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYTYzMjczMTMxZmU4MTcwNDVlZjZhZSIsImlhdCI6MTYwNDczMTk5MSwiZXhwIjoxNjA0NzM1NTkxfQ.dC5-X32cD5DIWf5SX-MxqwiD9HZn38ayJnaHi70ivPM
 ###
 #ADD ONE PROJECT
 POST http://localhost:8080/api/projects
