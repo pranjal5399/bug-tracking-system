@@ -14,6 +14,16 @@ POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-    "email":"pranjal@xyz.com",
-    "password":"pranjal123"
+    "email":"pranjalchourasia2915@gmail.com",
+    "password":"12345"
 }
+
+###
+#TOKEN VALIDATION
+POST http://localhost:8080/api/auth/isValidToken
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZhY2RlZjY4YjdjYmExNmI4NmIwYjE3IiwiaWF0IjoxNjA1MjUxMTc4LCJleHAiOjE2MDUyNTQ3Nzh9.DB-YVGmOlbdS-cxmKZFJcPDpyUs7DKrpq6ynbuw-Cl8
+
+###
+GET http://localhost:8080/api/user/
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZhY2RlZjY4YjdjYmExNmI4NmIwYjE3IiwiaWF0IjoxNjA1MjUxMTc4LCJleHAiOjE2MDUyNTQ3Nzh9.DB-YVGmOlbdS-cxmKZFJcPDpyUs7DKrpq6ynbuw-Cl8
+

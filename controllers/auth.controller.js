@@ -29,13 +29,10 @@ exports.signup = async (req, res) => {
       password: hash,
     });
 
-    const savedUser = await newUser.save();
+    let savedUser = await newUser.save();
     if (!savedUser) throw Error("Something went wrong saving the user");
 
-    // const payload = { ...savedUser };
-    // delete payload["password"];
-
-    const token = jwt.sign({ id: savedUser._id }, JWT_SECRET, {
+    const token = jwt.sign({ user: savedUser.id }, JWT_SECRET, {
       expiresIn: 3600,
     });
 
@@ -63,16 +60,15 @@ exports.login = async (req, res) => {
 
   try {
     // Check for existing user
-    const user = await User.findOne({ email });
+    let user = await User.findOne({ email });
     if (!user) throw Error("User does not exist");
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) throw Error("Invalid credentials");
 
-    // const payload = { ...user };
-    // delete payload["password"];
+    delete user.password;
 
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: 3600 });
+    const token = jwt.sign({ user: user.id }, JWT_SECRET, { expiresIn: 3600 });
     if (!token) throw Error("Couldnt sign the token");
 
     res.status(200).json({
@@ -89,9 +85,35 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.logout = async (req, res) => {
+exports.isValidToken = async (req, res) => {
   try {
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: 0 });
-    res.status(200).json({ token });
-  } catch (error) {}
+    const token = req.header("x-auth-token");
+    if (!token) {
+      console.log("No token found");
+      return res.json(false);
+    }
+
+    const verified = jwt.verify(token, JWT_SECRET);
+    if (!verified) {
+      console.log("Token not verified");
+      return res.json(false);
+    }
+
+    const user = await User.findById(verified.user);
+    if (!user) {
+      console.log("No user found");
+      return res.json(false);
+    }
+
+    return res.json(true);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
+
+// exports.logout = async (req, res) => {
+//   try {
+//     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: 0 });
+//     res.status(200).json({ token });
+//   } catch (error) {}
+// };

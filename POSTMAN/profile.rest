@@ -1,12 +1,5 @@
-#GET ALL PROJECTS
-GET http://localhost:8080/api/projects
+#GET PROFILE
+GET http://localhost:8080/api/profile/
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InRpY2tldHMiOltdLCJyb2xlIjoiZGV2ZWxvcGVyIiwicHJvamVjdHMiOltdLCJfaWQiOiI1ZmFjZGVmNjhiN2NiYTE2Yjg2YjBiMTciLCJuYW1lIjoiUHJhbmphbCBDaG91cmFzaWEiLCJlbWFpbCI6InByYW5qYWxjaG91cmFzaWEyOTE1QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJHFJQmpkd1p3WjltU1VnZFdRU3hNLk9MZnA0cU5mdGFOMkRjd2NyL0FTVVJ6dVE4S21nQ2U2IiwiX192IjowfSwiaWF0IjoxNjA1MTY3NDExLCJleHAiOjE2MDUxNzEwMTF9.LsfzujY8Cx0UEgqEEy9KR-arArlsFi9cex4leMX8UOc
-###
-#ADD ONE PROJECT
-POST http://localhost:8080/api/projects
-Content-Type: application/json
 
-{
-    "title":"Project2",
-    "description":"description2"
-}
+###

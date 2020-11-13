@@ -7,6 +7,8 @@
 
 # **Tickets**
 
-1. High Priority
-2. Medium Priority
-3. Low Priority
+1. Severity:
+   High Priority
+   Medium Priority
+   Low Priority
+2. Errorenous behavior
