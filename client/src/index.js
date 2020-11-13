@@ -4,7 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8080/api/";
+axios.defaults.baseURL = "https://react-bug-tracker.herokuapp.com/api/";
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem(
   "auth-token"
 );
