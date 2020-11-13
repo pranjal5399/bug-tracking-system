@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
-import UserContext from "../../context/UserContext";
-import axios from "axios";
+import UserContext from "../../../context/UserContext";
 import {
   Button,
   Modal,
@@ -10,8 +9,9 @@ import {
   TextField,
   Container,
 } from "@material-ui/core";
+import useStyles from "./styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import useStyles from "../LoginModal/styles";
+import axios from "axios";
 
 const modal = {
   top: "50%",
@@ -19,8 +19,7 @@ const modal = {
   transform: "translate(-50%, -50%)",
 };
 
-const SignupModal = () => {
-  const formRef = React.useRef();
+const LoginModal = () => {
   const classes = useStyles();
   const { setUserData } = useContext(UserContext);
   const [modalStyle] = useState(modal);
@@ -38,30 +37,29 @@ const SignupModal = () => {
     e.preventDefault();
 
     const body = {};
-    body["name"] = e.target.name.value;
     body["email"] = e.target.email.value;
     body["password"] = e.target.password.value;
 
-    if (body.name !== "" && body.email !== "" && body.password !== "") {
+    if (body.email !== "" && body.password !== "") {
       try {
-        const res = await axios.post("/auth/signup/", body);
+        const res = await axios.post("/auth/login/", body);
         setUserData({
           token: res.data.token,
           user: res.data.user,
         });
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("auth-token", res.data.token);
         handleClose();
       } catch (error) {
         console.log(error.message);
       }
     } else {
-      alert("Enter all fields");
+      console.log("Enter all fields");
     }
   };
   return (
     <div>
       <Button color="inherit" onClick={handleOpen}>
-        Sign Up
+        Login
       </Button>
 
       <Modal
@@ -70,6 +68,7 @@ const SignupModal = () => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
+        {/* <div style={modalStyle} className={classes.paper}> */}
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div style={modalStyle} className={classes.paper}>
@@ -77,10 +76,9 @@ const SignupModal = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign Up
+              Sign In
             </Typography>
             <form
-              ref={formRef}
               className={classes.form}
               noValidate
               onSubmit={submitEventHandler}
@@ -88,28 +86,18 @@ const SignupModal = () => {
               <TextField
                 variant="outlined"
                 margin="normal"
-                required={true}
-                fullWidth
-                id="name"
-                label="Full Name"
-                name="name"
-                autoComplete="name"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required={true}
+                required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                autoFocus
               />
               <TextField
                 variant="outlined"
                 margin="normal"
-                required={true}
+                required
                 fullWidth
                 name="password"
                 label="Password"
@@ -124,9 +112,8 @@ const SignupModal = () => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                onClick={() => formRef.current.reportValidity()}
               >
-                Sign Up
+                Sign In
               </Button>
             </form>
           </div>
@@ -136,4 +123,4 @@ const SignupModal = () => {
   );
 };
 
-export default SignupModal;
+export default LoginModal;

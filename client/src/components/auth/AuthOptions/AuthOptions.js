@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Typography, Button } from "@material-ui/core";
-
+import { Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import LoginModal from "../LoginModal/LoginModal";
 import SignupModal from "../SignupModal/SignupModal";
-import UserContext from "../../context/UserContext";
+import UserContext from "../../../context/UserContext";
 
 const AuthOptions = () => {
+  const history = useHistory();
   const { userData, setUserData } = useContext(UserContext);
   const logout = () => {
     setUserData({
@@ -14,15 +15,21 @@ const AuthOptions = () => {
     });
     localStorage.setItem("auth-token", "");
   };
+  const projects = () => {
+    history.push("/projects");
+  };
   return (
     <>
       {userData.user ? (
         <>
-          <Typography variant="button" display="block">
+          {/* <Typography variant="button" display="block">
             Hi, {userData.user.name.split(" ")[0]}
-          </Typography>
+          </Typography> */}
           <Button color="inherit" onClick={logout}>
             Logout
+          </Button>
+          <Button color="inherit" onClick={projects}>
+            Projects
           </Button>
         </>
       ) : (

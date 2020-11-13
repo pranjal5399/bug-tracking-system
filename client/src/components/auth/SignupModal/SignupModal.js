@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import UserContext from "../../context/UserContext";
+import UserContext from "../../../context/UserContext";
+import axios from "axios";
 import {
   Button,
   Modal,
@@ -9,9 +10,8 @@ import {
   TextField,
   Container,
 } from "@material-ui/core";
-import useStyles from "./styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import axios from "axios";
+import useStyles from "../LoginModal/styles";
 
 const modal = {
   top: "50%",
@@ -19,7 +19,8 @@ const modal = {
   transform: "translate(-50%, -50%)",
 };
 
-const LoginModal = () => {
+const SignupModal = () => {
+  const formRef = React.useRef();
   const classes = useStyles();
   const { setUserData } = useContext(UserContext);
   const [modalStyle] = useState(modal);
@@ -37,29 +38,30 @@ const LoginModal = () => {
     e.preventDefault();
 
     const body = {};
+    body["name"] = e.target.name.value;
     body["email"] = e.target.email.value;
     body["password"] = e.target.password.value;
 
-    if (body.email !== "" && body.password !== "") {
+    if (body.name !== "" && body.email !== "" && body.password !== "") {
       try {
-        const res = await axios.post("/auth/login/", body);
+        const res = await axios.post("/auth/signup/", body);
         setUserData({
           token: res.data.token,
           user: res.data.user,
         });
-        localStorage.setItem("auth-token", res.data.token);
+        localStorage.setItem("token", res.data.token);
         handleClose();
       } catch (error) {
         console.log(error.message);
       }
     } else {
-      console.log("Enter all fields");
+      alert("Enter all fields");
     }
   };
   return (
     <div>
       <Button color="inherit" onClick={handleOpen}>
-        Login
+        Sign Up
       </Button>
 
       <Modal
@@ -68,7 +70,6 @@ const LoginModal = () => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {/* <div style={modalStyle} className={classes.paper}> */}
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div style={modalStyle} className={classes.paper}>
@@ -76,9 +77,10 @@ const LoginModal = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign In
+              Sign Up
             </Typography>
             <form
+              ref={formRef}
               className={classes.form}
               noValidate
               onSubmit={submitEventHandler}
@@ -86,18 +88,28 @@ const LoginModal = () => {
               <TextField
                 variant="outlined"
                 margin="normal"
-                required
+                required={true}
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="name"
+                label="Full Name"
+                name="name"
+                autoComplete="name"
                 autoFocus
               />
               <TextField
                 variant="outlined"
                 margin="normal"
-                required
+                required={true}
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required={true}
                 fullWidth
                 name="password"
                 label="Password"
@@ -112,8 +124,9 @@ const LoginModal = () => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={() => formRef.current.reportValidity()}
               >
-                Sign In
+                Sign Up
               </Button>
             </form>
           </div>
@@ -123,4 +136,4 @@ const LoginModal = () => {
   );
 };
 
-export default LoginModal;
+export default SignupModal;

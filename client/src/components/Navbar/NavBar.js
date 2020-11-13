@@ -1,31 +1,28 @@
 import React from "react";
 import clsx from "clsx";
-import { useHistory } from "react-router-dom";
-import { useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+
+import {
+  Drawer,
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import AuthOptions from "../AuthOptions/AuthOptions";
-import { Button } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import AuthOptions from "../auth/AuthOptions/AuthOptions";
 import useStyles from "./styles";
 
 const Navbar = (props) => {
-  const history = useHistory();
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -34,10 +31,6 @@ const Navbar = (props) => {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const projects = () => {
-    history.push("/projects");
   };
 
   return (
@@ -65,9 +58,6 @@ const Navbar = (props) => {
           </Typography>
 
           <AuthOptions />
-          <Button color="inherit" onClick={projects}>
-            Projects
-          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -81,11 +71,7 @@ const Navbar = (props) => {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
+            <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
