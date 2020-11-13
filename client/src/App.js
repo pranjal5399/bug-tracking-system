@@ -2,8 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-// import LandingPage from "./components/LandingPage/LandingPage";
-import Navbar from "./components/Navbar/NavBar";
+import Navbar from "./components/layout/Navbar/NavBar";
 import Home from "./components/Home/Home";
 import UserContext from "./context/UserContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
@@ -33,7 +32,6 @@ const App = () => {
     checkLoggedIn();
   }, []);
 
-  // const body = user ? <Home user={user} /> : <LandingPage />;
   return (
     <div className="App">
       <BrowserRouter>

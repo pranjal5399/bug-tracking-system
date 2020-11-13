@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config = require("config");
-const MONGO_URI = config.get("mongoURI");
+//const MONGO_URI = config.get("mongoURI");
+require("dotenv").config();
 const cors = require("cors");
 /*
 const passport = require("passport");
@@ -11,8 +12,8 @@ const methodOverride = require("method-override");
 */
 
 const PORT = process.env.PORT || 8080;
-const url = "mongodb://localhost/bug-tracker";
-//const url = MONGO_URI;
+//const url = "mongodb://localhost/bug-tracker";
+const url = process.env.MONGO_URI;
 const app = express();
 
 // PASSPORT CONFIGURATION

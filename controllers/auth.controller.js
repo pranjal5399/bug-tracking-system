@@ -1,9 +1,9 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
-
-const JWT_SECRET = config.get("jwtSecret");
+//const config = require("config");
+require("dotenv").config();
+//const process.env.JWT_SECRET = config.get("jwtSecret");
 
 exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
@@ -32,7 +32,7 @@ exports.signup = async (req, res) => {
     let savedUser = await newUser.save();
     if (!savedUser) throw Error("Something went wrong saving the user");
 
-    const token = jwt.sign({ user: savedUser.id }, JWT_SECRET, {
+    const token = jwt.sign({ user: savedUser.id }, process.env.JWT_SECRET, {
       expiresIn: 3600,
     });
 
@@ -68,7 +68,9 @@ exports.login = async (req, res) => {
 
     delete user.password;
 
-    const token = jwt.sign({ user: user.id }, JWT_SECRET, { expiresIn: 3600 });
+    const token = jwt.sign({ user: user.id }, process.env.JWT_SECRET, {
+      expiresIn: 3600,
+    });
     if (!token) throw Error("Couldnt sign the token");
 
     res.status(200).json({
@@ -93,7 +95,7 @@ exports.isValidToken = async (req, res) => {
       return res.json(false);
     }
 
-    const verified = jwt.verify(token, JWT_SECRET);
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
     if (!verified) {
       console.log("Token not verified");
       return res.json(false);
@@ -113,7 +115,7 @@ exports.isValidToken = async (req, res) => {
 
 // exports.logout = async (req, res) => {
 //   try {
-//     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: 0 });
+//     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 0 });
 //     res.status(200).json({ token });
 //   } catch (error) {}
 // };

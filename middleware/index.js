@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
-const JWT_SECRET = config.get("jwtSecret");
+//const JWT_SECRET = config.get("jwtSecret");
 
 exports.auth = async (req, res, next) => {
   const token = req.header("x-auth-token");
@@ -12,7 +12,7 @@ exports.auth = async (req, res, next) => {
 
   try {
     // Verify token
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // Add user from payload
     //const payload = await User.findOne(decoded._id);
     req.user = decoded;
