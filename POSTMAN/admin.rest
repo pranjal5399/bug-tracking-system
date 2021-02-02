@@ -1,0 +1,25 @@
+###
+#GET OWN DATA
+GET http://localhost:8080/api/admin/users/
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3NjY4MzAzLCJleHAiOjE2MDc2NzE5MDN9.e-PK7oIDRN58VJBuOuh0Y6CwykZc5zVo3BJDNP711VY
+
+
+###
+#GET ALL USERS
+GET http://localhost:8080/api/admin/users
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3NjY4MzAzLCJleHAiOjE2MDc2NzE5MDN9.e-PK7oIDRN58VJBuOuh0Y6CwykZc5zVo3BJDNP711VY
+
+###
+#GET ONE USER
+GET http://localhost:8080/api/admin/users/5fd31319d78cc34e68dda0c8
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3NjY4MzAzLCJleHAiOjE2MDc2NzE5MDN9.e-PK7oIDRN58VJBuOuh0Y6CwykZc5zVo3BJDNP711VY
+
+###
+#ASSIGN ROLE TO USER
+PUT  http://localhost:8080/api/admin/users/5fd31319d78cc34e68dda0c8
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3NjY4MzAzLCJleHAiOjE2MDc2NzE5MDN9.e-PK7oIDRN58VJBuOuh0Y6CwykZc5zVo3BJDNP711VY
+Content-Type: application/json
+
+{
+    "role":"product manager"
+}

@@ -1,12 +1,17 @@
-import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navbar from "./components/layout/Navbar/NavBar";
-import Home from "./components/Home/Home";
+
 import UserContext from "./context/UserContext";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import LandingPage from "./components/LandingPage/LandingPage";
+import Layout from "./components/Layout/Layout";
+import Home from "./components/Home/Home";
 import Project from "./components/Project/Project";
+import AddProject from "./components/Project/AddProject";
+import Tickets from "./components/Tickets/Tickets";
+import Profile from "./components/Profile/Profile";
+import ProtectedRoute from "./components/SpecialRoutes/ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -21,12 +26,15 @@ const App = () => {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenRes = await axios.post("/auth/isValidToken", null);
-      //console.log(tokenRes.data);
+      const config = {
+        headers: {
+          "x-auth-token": token,
+        },
+      };
+      const tokenRes = await axios.post("/auth/isValidToken", null, config);
       if (tokenRes.data) {
-        const userRes = await axios.get("/user");
+        const userRes = await axios.get("/user", config);
         setUserData({ token, user: userRes.data });
-        // console.log(userData);
       }
     };
     checkLoggedIn();
@@ -36,12 +44,20 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
-          <Navbar>
-            <Switch>
-              <Route exact path="/" component={Home} />
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Layout>
+              <ProtectedRoute exact path="/home" component={Home} />
               <ProtectedRoute exact path="/projects" component={Project} />
-            </Switch>
-          </Navbar>
+              <ProtectedRoute
+                exact
+                path="/projects/add"
+                component={AddProject}
+              />
+              <ProtectedRoute exact path="/tickets" component={Tickets} />
+              <ProtectedRoute exact path="/profile" component={Profile} />
+            </Layout>
+          </Switch>
         </UserContext.Provider>
       </BrowserRouter>
     </div>

@@ -3,9 +3,9 @@ POST http://localhost:8080/api/auth/signup
 Content-Type: application/json
 
 {
-    "name":"Parth",
-    "email":"parth@xyz.com",
-    "password":"parth123"
+    "name":"Kartik",
+    "email":"Kartik@gmail.com",
+    "password":"12345"
 }
 
 ###
@@ -21,9 +21,10 @@ Content-Type: application/json
 ###
 #TOKEN VALIDATION
 POST http://localhost:8080/api/auth/isValidToken
-x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZhY2RlZjY4YjdjYmExNmI4NmIwYjE3IiwiaWF0IjoxNjA1MjUxMTc4LCJleHAiOjE2MDUyNTQ3Nzh9.DB-YVGmOlbdS-cxmKZFJcPDpyUs7DKrpq6ynbuw-Cl8
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3NjY4MzAzLCJleHAiOjE2MDc2NzE5MDN9.e-PK7oIDRN58VJBuOuh0Y6CwykZc5zVo3BJDNP711VY
 
 ###
+#GET ALL USERS
 GET http://localhost:8080/api/user/
-x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZhY2RlZjY4YjdjYmExNmI4NmIwYjE3IiwiaWF0IjoxNjA1MjUxMTc4LCJleHAiOjE2MDUyNTQ3Nzh9.DB-YVGmOlbdS-cxmKZFJcPDpyUs7DKrpq6ynbuw-Cl8
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3NjY4MzAzLCJleHAiOjE2MDc2NzE5MDN9.e-PK7oIDRN58VJBuOuh0Y6CwykZc5zVo3BJDNP711VY
 

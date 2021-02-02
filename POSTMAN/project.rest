@@ -1,12 +1,39 @@
 #GET ALL PROJECTS
 GET http://localhost:8080/api/projects
-x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InRpY2tldHMiOltdLCJyb2xlIjoiZGV2ZWxvcGVyIiwicHJvamVjdHMiOltdLCJfaWQiOiI1ZmFjZGVmNjhiN2NiYTE2Yjg2YjBiMTciLCJuYW1lIjoiUHJhbmphbCBDaG91cmFzaWEiLCJlbWFpbCI6InByYW5qYWxjaG91cmFzaWEyOTE1QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJHFJQmpkd1p3WjltU1VnZFdRU3hNLk9MZnA0cU5mdGFOMkRjd2NyL0FTVVJ6dVE4S21nQ2U2IiwiX192IjowfSwiaWF0IjoxNjA1MTY3NDExLCJleHAiOjE2MDUxNzEwMTF9.LsfzujY8Cx0UEgqEEy9KR-arArlsFi9cex4leMX8UOc
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZhY2RlZjY4YjdjYmExNmI4NmIwYjE3IiwiaWF0IjoxNjA1MzMyNzE4LCJleHAiOjE2MDUzMzYzMTh9.WUHgMwbKy3nxjXOAT07L9fTVC-hvvCwZaK3xUTCimuU
+###
+#GET ONE PROJECT
+GET http://localhost:8080/api/projects/5f9bc9baa66a912adcc8152a
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZhY2RlZjY4YjdjYmExNmI4NmIwYjE3IiwiaWF0IjoxNjA1MzMyNzE4LCJleHAiOjE2MDUzMzYzMTh9.WUHgMwbKy3nxjXOAT07L9fTVC-hvvCwZaK3xUTCimuU
 ###
 #ADD ONE PROJECT
 POST http://localhost:8080/api/projects
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3ODM5ODk3LCJleHAiOjE2MDc4NDM0OTd9.SvNdcCZJ8z3ivVVoLq7M9eOO8yi28eHLlofaZVLpd8M
 Content-Type: application/json
 
 {
-    "title":"Project2",
-    "description":"description2"
+    "title":"Project5",
+    "description":"description5"
+}
+
+###
+#UPDATE ONE PROJECT
+PUT http://localhost:8080/api/projects/5f9bc9baa66a912adcc8152a
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3ODcxNDg2LCJleHAiOjE2MDc4NzUwODZ9.ykvZuvkPgD7Mua6VCHGMng1Os7w0g8V92zSnvmsjtaw
+Content-Type: application/json
+
+{
+    "title":"Project-1",
+    "description":"description-1"
+}
+
+###
+#ADD ONE TICKET
+POST http://localhost:8080/api/projects/5f9bc9baa66a912adcc8152a/tickets
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWZkMzEyNDlkNzhjYzM0ZTY4ZGRhMGM2IiwiaWF0IjoxNjA3ODcxNDg2LCJleHAiOjE2MDc4NzUwODZ9.ykvZuvkPgD7Mua6VCHGMng1Os7w0g8V92zSnvmsjtaw
+Content-Type: application/json
+
+{
+    "name":"Ticket-1",
+    "description":"description-1"
 }

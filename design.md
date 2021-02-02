@@ -7,8 +7,17 @@
 
 # **Tickets**
 
-1. Severity:
+1. Type:
+   Bugs
+   Feature
+   Support
+2. Severity:
    High Priority
    Medium Priority
    Low Priority
-2. Errorenous behavior
+3. Status:
+   New
+   In progress
+   Resolved
+   Closed
+   Rejected

@@ -38,11 +38,7 @@ exports.signup = async (req, res) => {
 
     res.status(200).json({
       token,
-      user: {
-        id: savedUser.id,
-        name: savedUser.name,
-        email: savedUser.email,
-      },
+      user: savedUser,
     });
   } catch (error) {
     console.log(error);
@@ -66,8 +62,6 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) throw Error("Invalid credentials");
 
-    delete user.password;
-
     const token = jwt.sign({ user: user.id }, process.env.JWT_SECRET, {
       expiresIn: 3600,
     });
@@ -75,11 +69,7 @@ exports.login = async (req, res) => {
 
     res.status(200).json({
       token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
+      user,
     });
   } catch (error) {
     console.log(error);

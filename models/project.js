@@ -9,6 +9,7 @@ const projectSchema = new Schema({
   developers: [{ type: mongoose.ObjectId, ref: "User" }],
   tickets: [{ type: mongoose.ObjectId, ref: "Ticket" }],
   creation: { type: Date, default: Date.now },
+  last_updated: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Project", projectSchema);

@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://bugtracker:bugtracker123@cluster0.yim4i.mongodb.net/<dbname>?retryWrites=true&w=majority",
-  "jwtSecret": "BaltiMan"
-}
